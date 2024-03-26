@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FastAPI Website</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <button id="postButton">Send POST Request</button>
+  <div id="result"></div>
+
+  <script>
+    $(document).ready(function () {
+      $("#postButton").click(function () {
+        console.log('postButton click, go /fetch-data');
+        $.ajax({
+          type: "POST",
+          url: "/fetch-data",
+          success: function (response) {
+            console.log('res=' + response);
+            $("#result").html(response);
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+            $("#result").text("Error occurred while fetching data.");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
